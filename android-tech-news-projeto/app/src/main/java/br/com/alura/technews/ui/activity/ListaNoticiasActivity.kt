@@ -3,11 +3,12 @@ package br.com.alura.technews.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import br.com.alura.technews.R
 import br.com.alura.technews.model.Noticia
+import br.com.alura.technews.ui.fragments.ListaNoticiasFragment
 
 private const val TITULO_APPBAR = "Notícias"
-
 
 class ListaNoticiasActivity : AppCompatActivity() {
 
@@ -17,7 +18,19 @@ class ListaNoticiasActivity : AppCompatActivity() {
         title = TITULO_APPBAR
     }
 
+    override fun onAttachFragment(fragment: Fragment?) {
+        super.onAttachFragment(fragment)
 
+        if (fragment is ListaNoticiasFragment){
+            fragment.quandoNoticiaSelecionada = {
+                abreVisualizadorNoticia(it)
+            }
+
+            fragment.quandoFabSalvaNoticiaClicado = {
+                abreFormularioModoCriacao()
+            }
+        }
+    }
 
     private fun abreFormularioModoCriacao() {
         val intent = Intent(this, FormularioNoticiaActivity::class.java)
@@ -29,5 +42,4 @@ class ListaNoticiasActivity : AppCompatActivity() {
         intent.putExtra(NOTICIA_ID_CHAVE, it.id)
         startActivity(intent)
     }
-
 }
