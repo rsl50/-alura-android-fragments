@@ -1,0 +1,1 @@
+java -jar -Dserver.port=8081 server.jar
