@@ -29,6 +29,7 @@ class VisualizaNoticiaFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Habilita exibição do menu superior de opções
         setHasOptionsMenu(true)
 
         buscaNoticiaSelecionada()
